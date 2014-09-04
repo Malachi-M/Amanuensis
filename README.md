@@ -8,9 +8,9 @@ Each __post__ has the following properties:
 - id - A Number identifier for archiving posts
 - title - A String providing the post title
 - author - A String providing the name of the author
-- posted - A Date representing the date/time an author posted a blog post
+- created - A Date representing the date/time an author posted a blog post
 - body - A String providing the content of the blog post
-- tags - An Array of Strings containing descriptor tokens about content within the body
+- tag - An Array of Strings containing descriptor tokens about content within the body
 
 Each __comment__ has the following properties
 - id - A Number identifier to match up with the correct post as well as archiving comments
