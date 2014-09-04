@@ -1,0 +1,8 @@
+# File extensions to be ignored: .a files, .c9revisions/ directory, .txt files
+*.a
+node_modules
+!lib.a
+.c9revisions/
+*.txt
+.c9/
+
