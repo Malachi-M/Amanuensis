@@ -1,7 +1,7 @@
 Amanuensis
 ==========
 A light-weight blogging platform that takes down your thoughts in written form and presents the written word in an elegant voice.
-# Project Details
+## Project Details
 The goal of this project is to empower all voices to be read through a simple platform aimed at providing elegant user facing content.
 
 Each __post__ has the following properties:
