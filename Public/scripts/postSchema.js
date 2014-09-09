@@ -12,14 +12,15 @@ var post = {
     
     tag: [tags]
 
+    comment : [{
+    
+            author: String,
+    
+            created: Date,
+    
+            body: String
+            }]
         
 }
 
-var comment = {
-    
-    author: String,
-    
-    created: Date,
-    
-    body: String
-}
+var 
