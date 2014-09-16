@@ -1,24 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8" />
-        <title>Amanuensis Simple Blogging</title>
+        <title>Amanuensis - Simple Blogs</title>
     </head>
-    
     <body>
-        <article>
-            <section class="post">
-                <h1 class="post-title">Ham in the Hamptons</h1>
-                <h4 class="post-author">Humphrey Hamburg</h4>
-                <time class="post-time">9-3-14 7:00pm</time>
-                <p class="post-body">So, day 1. Went to a restaurant on the pier. Ordered me up some ham.</p>
-                <mark class="post-tag">Restaurants</mark>
-            </section>
-            <section class="comment">
-                <h6 class="comment-author">Daisy McPheerson</h6>
-                <time class="comment-time">9-3-14 9:00pm</time>
-                <p class="comment-body">Was the ham any good? What is the name of the restaurant?</p>
-            </section>
-        </article>
+        <section class="post-container">
+   
+        </section>
+         <!-- Handlebars library CDN -->
+    	<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.4/handlebars.js"></script>
+    	
+    	<! -- Blog Template: The HTML rendered by handlebars for each post. -->
+    	<script id="blog-template" type="text/handlebars-template">
+    		<article class="post-blog-entry">
+    			<h1 class="post-title">{{title}}</h1>
+    			<h4 class="post-author">{{author}}</h4>
+    			<time class="post-created">{{created}}</time>
+    			<p class="post-body">{{body}}</p>
+    			<ul class="post-tags">
+    			{{#each tag}}
+    				<li>{{this}}<li>
+    			{{/each}}
+    			</ul>
+    			<aside class="post-commentsContainer">
+    			{{#each comment}}
+    			    <hr>
+    			    <h5 class="post-comment-author">{{author}}</h5>
+    			    <time class="post-comment-created">{{created}}</time>
+    			    <p class="post-comment-body">{{body}}</p>
+    			{{/each}}
+    			</aside>
+    		</article>	    
+    	  </script>	
+    <script src="../scripts/loadPost.js"></script>
     </body>
 </html>
