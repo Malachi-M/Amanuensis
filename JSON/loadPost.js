@@ -17,4 +17,4 @@ function renderPostWithTemplate( posts ) {
 	});
 }
 
-	renderPostWithTemplate( window.posts );
+getJSON('post.json', renderPostWithTemplate);
