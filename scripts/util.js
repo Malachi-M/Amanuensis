@@ -13,3 +13,8 @@ function getJSONP(path) {
     script.src = path;
     document.body.appendChild( script );
 }
+
+module.exports = {
+    getJSON : getJSON,
+    getJSONP : getJSONP
+}

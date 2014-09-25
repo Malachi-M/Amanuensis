@@ -16,3 +16,23 @@ Each __comment__ has the following properties
 - id - A Number identifier to match up with the correct post as well as archiving comments
 - author - A String providing the name of the commentor
 - body - A String providing the content of the comment
+
+#### Views
+- /post/:addPost
+    Displays the page that allows the blogger to create a new post. This is a form @ postCreate.html
+---
+- /post/:deletePost
+    Displays the page that lists out all current posts with an option to be able to delete a particular post.
+- /post/:editPost
+    Displays the page that will allow the blogger to edit a particular post
+- /post/:viewPost
+ 
+- /post/:index
+
+- /comment/:createComment
+
+- /comment/:deleteComment
+- 
+- - /admin/posts
+- /admin/posts/:editPost
+- /admin/posts/new
