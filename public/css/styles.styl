@@ -1,0 +1,119 @@
+/******* General Styles *********/
+body {
+  color: #777;
+
+}
+h1 {
+  font-size: 50px;
+  margin: 15px 0;
+}
+h2{font-size: 37px;}
+h3{font-size: 28px;}
+h4 {
+  font-size: 21px;
+  color: rgba(206, 206, 206, 1);
+}
+h5{font-size: 16px;}
+h6{font-size: 12px;}
+
+box-sizing(n)
+  -webkit-box-sizing n
+  -moz-box-sizing n
+  box-sizing n
+
+p {
+  font-family: "proxima-nova";
+  font-size: 18px;
+  line-height: 1.6em;
+  text-transform: none;
+  font-weight: 400;
+  font-style: normal;
+}
+/******* Layout Styles *********/
+article {
+  padding: 15px;
+}
+
+.fa-leaf {
+  display:block;
+  position: absolute;
+  margin-left: -30px;
+}
+.brand-logo {
+  
+  
+}
+
+li {
+  list-style:none;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
+  box-sizing: border-box;
+  display: block;
+}
+.nav-width {
+  width: 4em;
+  height: 100%;
+  position:fixed;
+  box-sizing: border-box;
+  top:0;
+  left:0;
+}
+nav {
+  @extend .nav-width;
+  background-color: #777;
+  -moz-transition: width .5s;
+  -webkit-transition: width .5s;
+  transition: width .5s;
+}
+
+nav:hover {
+  width: 10em;
+  height: 100%;
+}
+
+.content-width{
+    max-width: 56.250em;
+    padding: 4.688em;
+    padding-top: 2em;
+    height: 100%;
+    margin:10px auto;
+    box-sizing: border-box;
+}
+
+.post-container {
+  @extend .content-width;
+}
+/******* Post Styles *********/
+.post-tag {
+  border: 1px solid #CECECE;
+  border-radius: 3px;
+  padding: 3px;
+  display: inline;
+  background-color: #CECECE;
+  color: white;
+}
+.post-tag-anchor {
+  text-decoration: none;
+}
+.post-tag-list {
+  margin-left: -40px;
+}
+
+/******* Comment Styles *********/
+
+/********************/
+.hidden {
+  display: none
+}
+
+.expanded {
+  width: 8%;
+  height: 100%;
+  margin-left:1%;
+  margin-right:1%;
+}
+

@@ -25,14 +25,13 @@ Each __comment__ has the following properties
     Displays the page that lists out all current posts with an option to be able to delete a particular post.
 - /post/:editPost
     Displays the page that will allow the blogger to edit a particular post
-- /post/:viewPost
- 
+- /post/:view
 - /post/:index
 
 - /comment/:createComment
 
 - /comment/:deleteComment
-- 
-- - /admin/posts
+-
+- /admin/posts
 - /admin/posts/:editPost
 - /admin/posts/new

@@ -1,0 +1,27 @@
+{{#notification}}
+<p class="message {{severity}}">{{message}}</p>
+{{/notification}}
+
+<section class="post-container">
+    {{#post}}
+    <article class="post-blog-entry">
+        <h1 class="post-title">{{title}}</h1>
+        <h4 class="post-author">{{author}}</h4>
+        <time class="post-time">{{created}}</time>
+        <p class="post-body">{{body}}</p>
+        <ul class="post-tag-list">
+        {{#each tag}}
+            <a href="" class="post-tag-anchor"><li class="post-tag">{{this}}</li></a>
+        {{/each}}
+        </ul>
+    </article>
+    <aside class="post-comments-container">
+    {{#each comment}}
+        <hr>
+        <h5 class="post-comment-author">{{author}}</h6>
+        <time class="post-comment-time">{{created}}</time>
+        <p class="post-comment-body">{{body}}</p>
+    {{/each}}    
+    </aside>
+    {{/post}}
+</section>
