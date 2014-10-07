@@ -3,23 +3,20 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/styles.css" type="text/css" />
+        <link rel="stylesheet" href="/css/styles.css" type="text/css" />
         <title>{{title}}</title>
     </head>
     <body>
         <nav>
-            <h1><a href="#"><img class="brand-logo" src="images/quill-logo2-white.png"alt="Image of Brand Logo"></img></a></h1>
-          <ul>
-            <a href=""><li class="nav-item"><i class="fa fa-leaf"></i>View Posts</li></a>
-            <a href=""><li class="nav-item"><i class="fa fa-leaf"></i>Create Post</li></a>
-            <a href=""><li class="nav-item"><i class="fa fa-leaf"></i>Three</li></a>
-            <a href=""><li class="nav-item"><i class="fa fa-leaf"></i>Four</li></a>
-            <a href=""><li class="nav-item"><i class="fa fa-leaf"></i>Five</li></a>
+            <h1><a href="/"><img class="brand-logo" src="/images/quill-logo2-white.png"alt="Image of Brand Logo"></img></a></h1>
+          <ul class="nav-list">
+            <li class="nav-item"><a href="/"><span class="nav-item-detail">View Posts</span></a></li>
+            <li class="nav-item"><a href="/admin/post/create"><span class="nav-item-detail">Create Post</span></a></li>
+            <li class="nav-item"><a href="/admin/post/edit"><span class="nav-item-detail">Edit Post</span></a></li>
           </ul>    
         </nav>
-        <section class="post-container">
+        
             {{{ body }}}
-        </section>    
-        <!-- Run the JavaScript to load the form into the page -->
+
     </body>
 </html>

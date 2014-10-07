@@ -10,7 +10,7 @@ var post = {
     
     body: String,
     
-    tag: [tags]
+    tag: [String],
 
     comment : [{
     
@@ -23,4 +23,3 @@ var post = {
         
 }
 
-var 

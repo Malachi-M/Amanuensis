@@ -2,17 +2,14 @@
 <p class="message {{severity}}">{{message}}</p>
 {{/notification}}
 
-
+<section class="post-container">
     {{#posts}}
     <article class="post-blog-entry">
+        <a href={{_id}} class="post-link-wrapper"></a>
         <h1 class="post-title">{{title}}</h1>
         <h4 class="post-author">{{author}}</h4>
-        <time class="post-time">{{created}}</time>
-        <p class="post-body">{{body}}</p>
-        <ul class="post-tag-list">
-        {{#each tag}}
-            <a href="" class="post-tag-anchor"><li class="post-tag">{{this}}</li></a>
-        {{/each}}
-        </ul>
+        <time class="post-time"><small>{{created}}</small></time>
+        <main class="post-body">{{{body}}}</main>
     </article>
     {{/posts}}
+</section>    

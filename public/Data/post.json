@@ -1,5 +1,4 @@
-{
-  "posts": [
+  [
     {
       "id": 1,
       "title": "Ham in the Hamptons",
@@ -198,4 +197,3 @@
       ]
     }
   ]
-}

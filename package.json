@@ -1,0 +1,31 @@
+{
+  "name": "amanuensis",
+  "version": "0.4.0",
+  "description": "Amanuensis Simple Blogs",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.9.0",
+    "express-generator": "^4.9.0",
+    "hbs": "^2.7.0",
+    "lowdb": "^0.4.1",
+    "md2html": "0.0.1",
+    "mongoose": "^3.8.17",
+    "nodemon": "^1.2.1",
+    "stylus": "^0.49.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vitr0l/Amanuensis.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Vitr0l/Amanuensis/issues"
+  },
+  "homepage": "https://github.com/Vitr0l/Amanuensis"
+}
