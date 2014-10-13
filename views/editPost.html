@@ -3,21 +3,35 @@
 {{/notification}}
 
 <form class="post-form" enctype="application/json" action="" method="post">
-    <h1>Write Your Idea</h1>
+    <h1>Edit Your Idea</h1>
     <label class="post-form-label" for="author">Author:</label>
-    <input size="70" id="author" name="author" type="text">
+    <input size="70" id="author" name="author" type="text" value="{{post.author}}">
     <label class="post-form-label" for="title">Title:</label>
     <input size="70" id="title" name="title" value="{{post.title}}" type="text">
     <div id="preview"></div>
     <label class="post-form-label" for="text-input">Enter content:</label>
-    <textarea rows="10" cols="63" id="text-input" oninput="this.editor.update()" name="body"></textarea>
+    <textarea rows="10" cols="63" id="text-input" oninput="this.editor.update()" name="body" value="{{post.body}}"></textarea>
     <label class="post-form-label" for="tags">Tags:</label>
-    <input size="70" id="tags" name="tag" type="text">
-    <button value="Submit" class="post-form-submit" type="submit">Submit</button>
+    <input size="70" id="tags" name="tag" type="text" value="{{post.tag}}">
+    <input value="Submit" class="post-form-submit" type="submit">
+    <button
+        type="submit"
+        class="post-remove-button" 
+        formaction="/admin/post/:id/delete"
+        formmethod="POST"
+        name="action"
+        action="delete"
+        onclick="return confirm('Do you want to Remove this post?');"
+        value="Remove">Remove</button>
 </form>
 <script src="/scripts/vendor/markdown/markdown.min.js"></script>
 <script>
+    var text = document.querySelector('#text-input');
+    var textPreview = document.querySelector('#preview');
+    textPreview.innerHTML = text.value;
+    
     function Editor(input, preview) {
+        
         this.update = function() {
             preview.innerHTML = markdown.toHTML(input.value);
         };
@@ -35,11 +49,7 @@
     form.addEventListener('submit', function(evt) {
         body.value = "";
         body.value = document.getElementById('preview').innerHTML;
-        
-        if(body.value === ""){
-            alert("This is an empty post!");
-            evt.preventDefault();
-        }
+       // evt.preventDefault();
         //return false;
     });
 </script>

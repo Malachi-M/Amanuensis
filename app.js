@@ -25,11 +25,11 @@ app.use(bodyParser.urlencoded({ //bodyParse is used to parse the body of Post re
 
 
 app.get('/', function(req, res, next) { // Index served
-
+    
     Blog.find()
-        .sort({
-            id: 1
-        })
+        //.where('isRemoved')
+        //.equals(false)
+        .sort({id: 1})
         .exec(function(err, posts) {
             res.render('index', {
                 title: "Amanuensis - Simple Blogs",
@@ -37,13 +37,18 @@ app.get('/', function(req, res, next) { // Index served
             });
         });
 })
+
+
+
 app.get('/admin/post/create', function(req, res, next) { // route for creating a post
     res.render('createPost', {
         title: "New Post"
     });
 });
 
-app.post('/admin/post/create', savePost);
+app.post('/admin/post/create', savePost); // Saves a newly created post
+app.post('/admin/post/:id/edit', savePost); // Saves edits made to a post
+app.post('/admin/post/:id/delete', deletePost); // Removes post from the index list
 
 function savePost(req, res, next) {
 
@@ -61,6 +66,7 @@ function savePost(req, res, next) {
         post.set({
             title: req.body.title,
             author: req.body.author,
+            isRemoved: req.body.isRemoved,
             created: Date(),
             body: req.body.body || '',
             tag: req.body.tag.split(',')
@@ -69,7 +75,7 @@ function savePost(req, res, next) {
         post.save(function(err) {
             if (err) {
                 res.render('editPost', {
-                    title: "Error Saving Post!: " + post.title,
+                    title: "Error Saving Post: " + post.title,
                     post: post,
                     notification: {
                         severity: "error",
@@ -84,6 +90,32 @@ function savePost(req, res, next) {
     });
 }
 
+function deletePost(res, req, next){
+    
+    var post = res.post;
+    if(post){
+        console.warn('Removing Post!', post);
+        
+        post.set({isRemoved: true});
+        
+        post.save(function(err) {
+            if (err) {
+                res.render('editPost', {
+                    title: "Error Saving Post: " + post.title,
+                    post: post,
+                    notification: {
+                        severity: "error",
+                        message: "Well would ya look at that: " + err
+                    }
+                });
+            }
+            else {
+                res.redirect('/');
+            }
+        });
+    }
+}
+
 app.get('/admin/post/:id/edit', function(req, res, next) { // stub for editing commments
     Blog.findById(req.params.id, function(err, post) {
         if (err) res.status(404).render('index', {
@@ -92,7 +124,7 @@ app.get('/admin/post/:id/edit', function(req, res, next) { // stub for editing c
                 message: "Hey fella, your page percolated outta the internets. Next time perhaps!"
             }
         })
-        res.render('createPost', {
+        res.render('editPost', {
             title: "Edit a Post!",
             post: post
         });
@@ -107,6 +139,7 @@ app.get('/comment/create', function(req, res, next) { // stub for creating comme
 });
 
 app.post('/comment/create', saveComment);
+
 
 function saveComment(req, res, next) {
 

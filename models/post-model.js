@@ -10,9 +10,11 @@ var commentSchema = new mongoose.Schema({ //Comment Schema defined.
 
 var postSchema = new mongoose.Schema({ //Blog Post Schema defined.
     id: Number,
+    permalink: String,
     title: String,
     author: String,
     created: { type: Date, default: Date.now},
+    isRemoved: { type: Boolean, default: false},
     body: String,
     tag: [String],
     comment : [commentSchema] // sub document defined above in commentSchema
