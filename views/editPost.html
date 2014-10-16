@@ -2,7 +2,7 @@
 <p class="message {{severity}}">{{message}}</p>
 {{/notification}}
 
-<form class="post-form" enctype="application/json" action="" method="post">
+<form class="post-form" action="" method="post">
     <h1>Edit Your Idea</h1>
     <label class="post-form-label" for="author">Author:</label>
     <input size="70" id="author" name="author" type="text" value="{{post.author}}">
@@ -10,46 +10,19 @@
     <input size="70" id="title" name="title" value="{{post.title}}" type="text">
     <div id="preview"></div>
     <label class="post-form-label" for="text-input">Enter content:</label>
-    <textarea rows="10" cols="63" id="text-input" oninput="this.editor.update()" name="body" value="{{post.body}}"></textarea>
+    <textarea rows="10" cols="63" id="text-input" oninput="this.editor.update()" name="body">{{post.body}}</textarea>
     <label class="post-form-label" for="tags">Tags:</label>
     <input size="70" id="tags" name="tag" type="text" value="{{post.tag}}">
     <input value="Submit" class="post-form-submit" type="submit">
     <button
         type="submit"
         class="post-remove-button" 
-        formaction="/admin/post/:id/delete"
-        formmethod="POST"
         name="action"
-        action="delete"
         onclick="return confirm('Do you want to Remove this post?');"
         value="Remove">Remove</button>
 </form>
 <script src="/scripts/vendor/markdown/markdown.min.js"></script>
-<script>
-    var text = document.querySelector('#text-input');
-    var textPreview = document.querySelector('#preview');
-    textPreview.innerHTML = text.value;
-    
-    function Editor(input, preview) {
-        
-        this.update = function() {
-            preview.innerHTML = markdown.toHTML(input.value);
-        };
-        input.editor = this;
-        this.update();
-    }
-    var $ = function(id) {
-        return document.getElementById(id);
-    };
-    new Editor($("text-input"), $("preview"));
+<script src="/scripts/clientCompileMarkdown.js"></script>
 
-    var form = document.querySelector('.post-form');
-    var body = document.querySelector('textarea[name="body"]');
-
-    form.addEventListener('submit', function(evt) {
-        body.value = "";
-        body.value = document.getElementById('preview').innerHTML;
-       // evt.preventDefault();
-        //return false;
-    });
-</script>
+<!-- formaction="/admin/post/{{post._id}}/delete"
+        formmethod="POST" -->

@@ -25,11 +25,13 @@ app.use(bodyParser.urlencoded({ //bodyParse is used to parse the body of Post re
 
 
 app.get('/', function(req, res, next) { // Index served
-    
+
     Blog.find()
-        //.where('isRemoved')
-        //.equals(false)
-        .sort({id: 1})
+        .where('isRemoved')
+        .equals(null)
+        .sort({
+            created: -1
+        })
         .exec(function(err, posts) {
             res.render('index', {
                 title: "Amanuensis - Simple Blogs",
@@ -52,11 +54,11 @@ app.post('/admin/post/:id/delete', deletePost); // Removes post from the index l
 
 function savePost(req, res, next) {
 
-    if (req.body.action == 'delete') {
+    if (req.body.action == 'Remove') {
         return deletePost(req, res, next);
     }
 
-    Blog.findById(req.param.Id, function(err, post) {
+    Blog.findById(req.params.id, function(err, post) {
 
         if (!post) {
             post = new Blog();
@@ -69,7 +71,7 @@ function savePost(req, res, next) {
             isRemoved: req.body.isRemoved,
             created: Date(),
             body: req.body.body || '',
-            tag: req.body.tag.split(',')
+            tag: req.body.tag || req.body.tag.split(',') 
         });
 
         post.save(function(err) {
@@ -90,30 +92,43 @@ function savePost(req, res, next) {
     });
 }
 
-function deletePost(res, req, next){
-    
-    var post = res.post;
-    if(post){
-        console.warn('Removing Post!', post);
-        
-        post.set({isRemoved: true});
-        
-        post.save(function(err) {
-            if (err) {
-                res.render('editPost', {
-                    title: "Error Saving Post: " + post.title,
-                    post: post,
-                    notification: {
-                        severity: "error",
-                        message: "Well would ya look at that: " + err
-                    }
-                });
-            }
-            else {
-                res.redirect('/');
-            }
-        });
-    }
+function deletePost( req, res, next) {
+
+    Blog.findById(req.params.id, function(err, post) {
+
+        if (post) {
+            console.warn('Removing Post!', post);
+
+            post.set({
+                isRemoved: true
+            });
+
+            post.save(function(err) {
+                if (err) {
+                    res.render('editPost', {
+                        title: "Error Saving Post: " + post.title,
+                        post: post,
+                        notification: {
+                            severity: "error",
+                            message: "Well would ya look at that: " + err
+                        }
+                    });
+                }
+                else {
+                    res.redirect('/');
+                }
+            });
+        }
+        else {
+            res.render('error', {
+                title: "Not able to Remove Post" + req.params.id,
+                notification: {
+                    severity: "error",
+                    message: "Sorry your post could not be found nor removed"
+                }
+            });
+        }
+    });
 }
 
 app.get('/admin/post/:id/edit', function(req, res, next) { // stub for editing commments
@@ -138,19 +153,7 @@ app.get('/comment/create', function(req, res, next) { // stub for creating comme
     });
 });
 
-app.post('/comment/create', saveComment);
-
-
-function saveComment(req, res, next) {
-
-    if (req.body.action == 'delete') {
-        return deleteComment(req, res, next);
-    }
-
-
-}
-
-
+//app.post('/comment/create', saveComment);
 
 app.get('/comment/edit', function(req, res, next) {
     res.render('editComment', {

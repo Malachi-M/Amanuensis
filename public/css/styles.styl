@@ -30,7 +30,7 @@ p {
   font-style: normal;
 }
 /******* Base Layout Styles ****/
-.nav-width {
+$nav-width {
   width: 4em;
   height: 100%;
   position:fixed;
@@ -38,7 +38,7 @@ p {
   top:0;
   left:0;
 }
-.content-width{
+$content-width{
     max-width: 56.250em;
     padding: 4.688em;
     padding-top: 2em;
@@ -47,6 +47,7 @@ p {
     box-sizing: border-box;
 }
 /******* Layout Styles *********/
+
 article {
   padding: 15px;
   position: relative;
@@ -58,7 +59,7 @@ article {
   margin-left: -30px;
 }
 nav {
-  @extend .nav-width;
+  @extend $nav-width;
   background-color: #777;
   -moz-transition: width .5s;
   -webkit-transition: width .5s;
@@ -66,10 +67,7 @@ nav {
   transition: width .5s;
   overflow-x: hidden;
 }
-nav:hover {
-  width: 10em;
-  height: 100%;
-}
+
 
 .nav-list {
   width: 100%;
@@ -100,7 +98,8 @@ nav:hover {
   color: white;
 }
 .post-container {
-  @extend .content-width;
+  @extend $content-width;
+  width: 780px;
 }
 /******* Post Styles *********/
 .post-tag {
@@ -156,7 +155,7 @@ input {
 }
 /******* Create Comment Styles *********/
 .comment-form {
-  @extend .content-width;
+  @extend $content-width;
 }
 .comment-form-label{
   @extend .form-label;
@@ -173,7 +172,8 @@ input {
   @extend .form-label;
 }
 .post-form {
-  @extend .content-width;
+  @extend $content-width;
+  width: 600px;
 }
 .post-form h1{
   margin: 15px 0px 40px;
@@ -191,4 +191,47 @@ input {
 /********* Error Messages ************/
 .message {
   text-align: center;
+}
+/********* Media Queries *************/
+@media (min-width: 926px){
+    nav:hover {
+      width: 10em;
+      height: 100%;
+    }
+}
+@media (max-width: 925px){
+    nav{
+      width: 100%;
+      bottom: 0px;
+      top: unset;
+      z-index: 25;
+      transition: none 0s ease 0s;
+      height: 20%;
+    }
+    nav h1{
+      display: inline-block;
+      width: 10%;
+      position: absolute;
+      padding-left: 34px;
+      margin: 0px auto;
+      padding-top: 20px;
+    }
+    .nav-list{
+      display: inline-block;
+      width: 100%;
+      margin-left: 125px;
+      padding: 0px;
+    }
+    .nav-item{
+      display: inline-block;
+      width: 29%;
+      border-left: 1px solid rgb(255, 255, 255);
+      padding-top: 25px;
+      padding-bottom: 25px;
+      border-top:none;
+      
+    }
+    .nav-item:last-child {
+      border-bottom: none;
+  }
 }

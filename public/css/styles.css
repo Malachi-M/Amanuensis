@@ -31,7 +31,6 @@ p {
   font-style: normal;
 }
 /******* Base Layout Styles ****/
-.nav-width,
 nav {
   width: 4em;
   height: 100%;
@@ -42,7 +41,6 @@ nav {
   top: 0;
   left: 0;
 }
-.content-width,
 .post-container,
 .comment-form,
 .post-form {
@@ -73,10 +71,6 @@ nav {
   transition: width 0.5s;
   overflow-x: hidden;
 }
-nav:hover {
-  width: 10em;
-  height: 100%;
-}
 .nav-list {
   width: 100%;
   margin-left: -40px;
@@ -104,6 +98,9 @@ nav:hover {
   width: 6em;
   margin-left: 64px;
   color: #fff;
+}
+.post-container {
+  width: 780px;
 }
 /******* Post Styles *********/
 .post-tag {
@@ -161,6 +158,9 @@ input {
   font-weight: 100;
 }
 /******* Create Post Styles *********/
+.post-form {
+  width: 600px;
+}
 .post-form h1 {
   margin: 15px 0px 40px;
   font-weight: 100;
@@ -174,4 +174,46 @@ input {
 /********* Error Messages ************/
 .message {
   text-align: center;
+}
+/********* Media Queries *************/
+@media (min-width: 926px) {
+  nav:hover {
+    width: 10em;
+    height: 100%;
+  }
+}
+@media (max-width: 925px) {
+  nav {
+    width: 100%;
+    bottom: 0px;
+    top: unset;
+    z-index: 25;
+    transition: none 0s ease 0s;
+    height: 20%;
+  }
+  nav h1 {
+    display: inline-block;
+    width: 10%;
+    position: absolute;
+    padding-left: 34px;
+    margin: 0px auto;
+    padding-top: 20px;
+  }
+  .nav-list {
+    display: inline-block;
+    width: 100%;
+    margin-left: 125px;
+    padding: 0px;
+  }
+  .nav-item {
+    display: inline-block;
+    width: 29%;
+    border-left: 1px solid #fff;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-top: none;
+  }
+  .nav-item:last-child {
+    border-bottom: none;
+  }
 }

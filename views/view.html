@@ -7,13 +7,15 @@
     <article class="post-blog-entry">
         <h1 class="post-title">{{title}}</h1>
         <h4 class="post-author">{{author}}</h4>
-        <time class="post-time">{{created}}</time>
+        <time class="post-time"><small>{{created}}</small></time>
         <main class="post-body">{{{body}}}</main>
-        <ul class="post-tag-list">
-        {{#each tag}}
-            <a href="" class="post-tag-anchor"><li class="post-tag">{{this}}</li></a>
-        {{/each}}
-        </ul>
+        {{#if tag.length}} 
+            <ul class="post-tag-list">
+                {{#each tag}}
+                    <a href="" class="post-tag-anchor"><li class="post-tag">{{this}}</li></a>
+                {{/each}}
+            </ul>
+        {{/if}}
     </article>
     <aside class="post-comments-container">
     {{#each comment}}
