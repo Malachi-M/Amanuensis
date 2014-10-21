@@ -1,0 +1,10 @@
+{{!--
+    Error notification object will appear when an error has occured.
+    Use this partial within your views to expose this notification.
+    
+    Example implementation: {{> error_notification }} 
+    
+--}}
+{{#notification}}
+<p class="message {{severity}}">{{message}}</p>
+{{/notification}}

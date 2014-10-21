@@ -1,6 +1,4 @@
-{{#notification}}
-<p class="message {{severity}}">{{message}}</p>
-{{/notification}}
+{{> error_notification }}
 
 <section class="post-container">
     {{#posts}}
@@ -8,10 +6,9 @@
         <a href={{_id}} class="post-link-wrapper"></a>
         <h1 class="post-title">{{title}}</h1>
         <h4 class="post-author">{{author}}</h4>
-        <time class="post-time"><small>{{created}}</small></time>
+        <time class="post-time"><small>{{dateFormat}}</small></time>
         <main class="post-body">{{{body}}}</main>
         <span>{{isRemoved}}</span>
     </article>
     {{/posts}}
 </section>    
-<script src="formatDate.js"></script>

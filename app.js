@@ -2,6 +2,7 @@
 var express = require('express');
 var bodyParser = require("body-parser");
 var hbs = require("hbs");
+var hbsutils = require('hbs-utils')(hbs);
 var stylus = require('stylus');
 
 var Blog = require('./models/post-model');
@@ -11,6 +12,8 @@ var app = express(); // Initiating a new express instance.
 
 app.set('view engine', 'html'); // Setting the views for the templates to be read as html files from the handlebar engine.
 app.engine('html', hbs.__express);
+
+hbsutils.registerPartials('views/partials');
 
 app.use(stylus.middleware(__dirname + '/public/css'));
 
@@ -51,6 +54,8 @@ app.get('/admin/post/create', function(req, res, next) { // route for creating a
 app.post('/admin/post/create', savePost); // Saves a newly created post
 app.post('/admin/post/:id/edit', savePost); // Saves edits made to a post
 app.post('/admin/post/:id/delete', deletePost); // Removes post from the index list
+app.post('/post/:id/comment/create', saveComment);
+app.post('/post/:id/comment/:id/delete', deleteComment);
 
 function savePost(req, res, next) {
 
@@ -60,21 +65,22 @@ function savePost(req, res, next) {
 
     Blog.findById(req.params.id, function(err, post) {
 
+
         if (!post) {
             post = new Blog();
-            post.created = new Date();
+            post.created = Date();
         }
 
         post.set({
             title: req.body.title,
             author: req.body.author,
             isRemoved: req.body.isRemoved,
-            created: Date(),
             body: req.body.body || '',
-            tag: req.body.tag || req.body.tag.split(',') 
+            tag: req.body.tag.split(/[ ,]+/).filter(Boolean)
         });
 
         post.save(function(err) {
+            console.log(post.tag);
             if (err) {
                 res.render('editPost', {
                     title: "Error Saving Post: " + post.title,
@@ -92,7 +98,7 @@ function savePost(req, res, next) {
     });
 }
 
-function deletePost( req, res, next) {
+function deletePost(req, res, next) {
 
     Blog.findById(req.params.id, function(err, post) {
 
@@ -124,7 +130,7 @@ function deletePost( req, res, next) {
                 title: "Not able to Remove Post" + req.params.id,
                 notification: {
                     severity: "error",
-                    message: "Sorry your post could not be found nor removed"
+                    message: "Sorry your post could not be found nor removed."
                 }
             });
         }
@@ -154,6 +160,78 @@ app.get('/comment/create', function(req, res, next) { // stub for creating comme
 });
 
 //app.post('/comment/create', saveComment);
+
+function saveComment(req, res, next) {
+
+    if (req.body.action == 'delete') {
+        return deleteComment(req, res, next);
+    }
+
+    Blog.findById(req.params.id, function(err, comment) {
+
+        if (!comment) {
+            comment = new Blog().comment;
+            comment.created = new Date();
+        }
+
+        comment.set({
+            author: req.body.comment.author,
+            created: Date(),
+            body: req.body.comment.body || '',
+        });
+
+        comment.save(function(err) {
+            if (err) {
+                res.render('createComment', {
+                    title: "Error Saving Create: " + comment.author,
+                    comment: comment,
+                    notification: {
+                        severity: "error",
+                        message: "Well would ya look at that: " + err
+                    }
+                });
+            }
+            else {
+                res.redirect('/');
+            }
+        });
+    });
+}
+
+function deleteComment(req, res, next) {
+
+    Blog.findById(req.params.id, function(err, comment) {
+
+        if (comment) {
+            console.warn('Removing Comment!', comment);
+
+            comment.remove(comment, function(err) {
+                if (err) {
+                    res.render('error', {
+                        title: "Delete comment failed!",
+                        notification: {
+                            severity: "error",
+                            message: "Could not delete comment: " + err
+                        }
+                    });
+                }
+                else {
+                    res.redirect('/');
+                }
+            });
+
+        }
+        else {
+            res.render('error', {
+                title: "Not able to Remove Comment" + req.params.id,
+                notification: {
+                    severity: "error",
+                    message: "Sorry your comment could not be found nor removed"
+                }
+            });
+        }
+    });
+}
 
 app.get('/comment/edit', function(req, res, next) {
     res.render('editComment', {
