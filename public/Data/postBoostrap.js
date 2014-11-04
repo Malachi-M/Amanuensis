@@ -14,7 +14,7 @@ var fs = require('fs');
 
 posts.forEach( function(post){
     var p = new Blog(post);
-    p.set("body", '<p>' + post.body + '</p>');
+    p.set("body", post.body);
 
     p.save( function(err){
         if(err)console.log("Save Unsuccessful!");

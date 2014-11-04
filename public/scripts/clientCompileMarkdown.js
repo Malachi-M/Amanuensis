@@ -14,8 +14,9 @@ var form = document.querySelector('.post-form');
 var body = document.querySelector('textarea[name="body"]');
 
 form.addEventListener('submit', function(evt) {
-    body.value = "";
+    /*body.value = "";
     body.value = document.getElementById('preview').innerHTML;
+    */
 
     if (body.value === "") {
         alert("This is an empty post!");

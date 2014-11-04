@@ -1,0 +1,11 @@
+{{> error_notification }}
+
+<form class='registration-form' action='/join' method='POST'>
+    <h1 class='registration-title'>Join Us</h1>
+    <label class='registration-form-label' for='username'>E-mail</label>
+    <input type='email' class='registration-email' size="70"  tabindex="1" name='username' required title="Please provide a valid e-mail address">
+    <label class='registration-form-label' for='password'>Password</label>
+    <input class='registration-password' size="70" name='password' tabindex="2" type='password'>
+    <input class='registration-password' size="70" name='passwordTwo' tabindex="2" type='password'>
+    <button type='submit' class='registration-form-submit'>Join</button>
+</form>

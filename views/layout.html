@@ -11,13 +11,18 @@
             <h1><a href="/"><img class="brand-logo" src="/images/quill-logo2-white.png" alt="Image of Brand Logo"></a></h1>
           <ul class="nav-list">
             <li class="nav-item"><a href="/"><span class="nav-item-detail">View Posts</span></a></li>
-            <li class="nav-item"><a href="/admin/post/create"><span class="nav-item-detail">Create Post</span></a></li>
-            {{#if post}}<li class="nav-item"><a href="/admin/post/{{post._id}}/edit"><span class="nav-item-detail">Edit Post</span></a></li>{{/if}}
+            <li class="nav-item"><a href="/login"><span class="nav-item-detail">Login</span></a></li>
+            <li class="nav-item"><a href="/logout"><span class="nav-item-detail">Logout</span></a></li>
+            <li class="nav-item"><a href="/join"><span class="nav-item-detail">Join Us</span></a></li>
+            {{#if user}}
+            <li class="nav-item"><a href="/posts/admin/create"><span class="nav-item-detail">Create Post</span></a></li>
+            {{#if post}}<li class="nav-item"><a href="/posts/admin/{{post._id}}/edit"><span class="nav-item-detail">Edit Post</span></a></li>{{/if}}
+            <li class="nav-item"><a href="/logout"><span class="nav-item-detail">Logout</span></a></li>
+            {{/if}}
           </ul>    
         </nav>
         
             {{{ body }}}
-
-    <script src="/scripts/formatDate.js"></script>
+            
     </body>
 </html>

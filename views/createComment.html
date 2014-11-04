@@ -1,6 +1,6 @@
 {{> error_notification }}
 
-<form method="get" action="" enctype="application/json" class="comment-form">
+<form method="post" action="" enctype="application/json" class="comment-form">
     <h1>Write Your Comment</h1>
     <label for="author" class="comment-form-label">Author:</label>
     <input type="text" id="author" name="author" size="70" />
@@ -8,5 +8,5 @@
     <label for="text-input" class="comment-form-label">Write Comment:</label>
     <textarea name="body" id="text-input" cols="63" rows="10"></textarea>
 
-    <input type="submit" class="comment-form-submit" value="Submit" />
+    <button type="submit" class="comment-form-submit" value="Submit">Submit</button>
 </form>

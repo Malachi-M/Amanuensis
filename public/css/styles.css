@@ -43,7 +43,9 @@ nav {
 }
 .post-container,
 .comment-form,
-.post-form {
+.post-form,
+.login-form,
+.registration-form {
   max-width: 56.25em;
   padding: 4.688em;
   padding-top: 2em;
@@ -102,6 +104,10 @@ nav {
 .post-container {
   width: 780px;
 }
+nav,
+.post-container {
+  transition: all 0.5s, ease 0s;
+}
 /******* Post Styles *********/
 .post-tag {
   border: 1px solid #cecece;
@@ -117,17 +123,12 @@ nav {
 .post-tag-list {
   margin-left: -40px;
 }
-.post-link-wrapper {
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  position: absolute;
-}
 /******* Generic Form Styles *********/
 .form-label,
 .comment-form-label,
-.post-form-label {
+.post-form-label,
+.login-form-label,
+.registration-form-label {
   display: block;
   margin-top: 15px;
   margin-bottom: 3px;
@@ -135,7 +136,9 @@ nav {
 }
 .form-submit,
 .comment-form-submit,
-.post-form-submit {
+.post-form-submit,
+.login-form-submit,
+.registration-form-submit {
   display: inline-block;
   margin-top: 15px;
 }
@@ -153,9 +156,22 @@ input {
   display: block;
 }
 /******* Create Comment Styles *********/
+.comment-form-submit {
+  display: block;
+}
 .comment-form h1 {
   margin: 15px 0px 40px;
   font-weight: 100;
+}
+.post-comment-body {
+  font-size: 16px;
+}
+.post-comment-create-link {
+  color: #777;
+  margin-left: 15px;
+}
+.post-comment-create-link:hover {
+  color: #cecece;
 }
 /******* Create Post Styles *********/
 .post-form {
@@ -171,6 +187,31 @@ input {
   padding-left: 5px;
   margin-top: 15px;
 }
+/*********** Login Styles ************/
+.login-title {
+  margin: 15px 0px 40px;
+  font-weight: 100;
+}
+.login-form {
+  width: 600px;
+}
+.login-form-label {
+  font-weight: 100;
+}
+/******* Registration Styles *********/
+.registration-title {
+  margin: 15px 0px 40px;
+  font-weight: 100;
+}
+.registration-form {
+  width: 600px;
+}
+.registration-form-label {
+  font-weight: 100;
+}
+.registration-password:first-child {
+  margin-bottom: 10px;
+}
 /********* Error Messages ************/
 .message {
   text-align: center;
@@ -180,6 +221,9 @@ input {
   nav:hover {
     width: 10em;
     height: 100%;
+  }
+  nav:hover + .post-container {
+    transform: translate(5em, 0);
   }
 }
 @media (max-width: 925px) {
