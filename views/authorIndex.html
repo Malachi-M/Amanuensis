@@ -1,0 +1,14 @@
+{{> error_notification }}
+
+<section class="post-container">
+    {{#posts}}
+    <article class="post-blog-entry">
+        <h1 class="post-title">{{title}}</h1>
+        <h4 class="post-author">{{author}}</h4>
+        <time class="post-time"><small>{{dateFormat}}</small></time>
+        <main class="post-body">{{{bodyHTML}}}</main>
+        <span>{{isRemoved}}</span>
+        <a href='/posts/{{_id}}' class="post-link-wrapper">Read Full Post</a>
+    </article>
+    {{/posts}}
+</section>    

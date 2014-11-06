@@ -10,7 +10,7 @@ var mongoose = require('mongoose');
 
 
 var Blog = require('./models/post-model');
-var routes = require('./routes/postRoutes');
+
 
 var app = express(); // Initiating a new express instance.
 

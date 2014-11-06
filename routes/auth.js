@@ -90,9 +90,14 @@ exports.init = function() {
                     if (err) {
                         return next(err);
                     }
-                    return res.redirect('/');
+                    if (user) {
+                        return res.redirect('/posts/by/:author');
+                    }
+                    else {
+                        return res.redirect('/login');
+                    }
                 });
-            })(req, res, next);
+            })(req, res, next)
         });
 
     router.get('/logout', function(req, res) {
