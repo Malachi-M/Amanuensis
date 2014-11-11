@@ -112,9 +112,27 @@ nav,
   margin-left: 10px;
   margin-top: 20px;
 }
+.fa {
+  color:#fff;
+  position: absolute;
+  margin-left: 1.45em;
+}
+.fa-search{
+  color:#fff;
+  margin-left:.75em;
+  position:relative;
+}
+.post-search{
+  display:inline-block;
+}
 .search-input {
-  width: 130px;
-  height: 15px;
+  display:inline-block;
+  width: 75px;
+  height: 0;
+  transform:translateX(5em);
+  overflow:hidden;
+  -webkit-transition:width .5s, height .5s, transform .5s;
+  transition:width .5s, height .5s, transform .5s;
 }
 .hidden{
   display: none;
@@ -173,6 +191,7 @@ nav,
 input {
   color:#777;
   display: block;
+  height:15px;
 }
 /******* Create Comment Styles *********/
 .edit-post-comments-container{
@@ -278,6 +297,14 @@ input {
     nav:hover {
       width: 10em;
       height: 100%;
+      .search-input{
+        width:130px;
+        height:15px;
+        transform:translateX(0);
+        }
+      .fa-search{
+        display:none;
+      }
     }
     nav:hover + .post-container {
       transform: translate(5em, 0);
@@ -300,13 +327,16 @@ input {
       margin: 0px auto;
       padding-top: 20px;
     }
+    .nav-item-detail{
+      display:none;
+    }
     .nav-list{
       display: inline-block;
       width: 100%;
       margin-left: 125px;
       padding: 0px;
     }
-    .nav-item{
+    /*.nav-item{
       display: inline-block;
       width: 29%;
       border-left: 1px solid rgb(255, 255, 255);
@@ -314,7 +344,7 @@ input {
       padding-bottom: 25px;
       border-top:none;
       
-    }
+    }*/
     .nav-item:last-child {
       border-bottom: none;
   }
