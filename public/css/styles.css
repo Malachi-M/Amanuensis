@@ -42,6 +42,7 @@ nav {
   left: 0;
 }
 .post-container,
+.edit-post-comments-container,
 .comment-form,
 .post-form,
 .login-form,
@@ -108,7 +109,25 @@ nav,
 .post-container {
   transition: all 0.5s, ease 0s;
 }
+.search-wrapper {
+  border-top: 1px solid #fff;
+}
+.post-search-container {
+  margin-left: 10px;
+  margin-top: 20px;
+}
+.search-input {
+  width: 130px;
+  height: 15px;
+}
+.hidden {
+  display: none;
+}
 /******* Post Styles *********/
+.post-author-link {
+  text-decoration: none;
+  color: #cecece;
+}
 .post-tag {
   border: 1px solid #cecece;
   border-radius: 3px;
@@ -156,6 +175,9 @@ input {
   display: block;
 }
 /******* Create Comment Styles *********/
+.edit-post-comments-container {
+  max-width: 600px;
+}
 .comment-form-submit {
   display: block;
 }
@@ -174,8 +196,17 @@ input {
   color: #cecece;
 }
 /******* Create Post Styles *********/
+.post-author-label {
+  display: inline-block;
+  margin-top: 0px;
+}
+.post-author-prefill {
+  font-size: 21px;
+  margin-left: 7px;
+  font-weight: bold;
+}
 .post-form {
-  width: 600px;
+  max-width: 600px;
 }
 .post-form h1 {
   margin: 15px 0px 40px;
@@ -214,6 +245,7 @@ input {
 }
 /********* Error Messages ************/
 .message {
+  margin-top: 2em;
   text-align: center;
 }
 /********* Media Queries *************/

@@ -2,8 +2,9 @@
 
 <form class="post-form" enctype="application/json" action="" method="post">
     <h1>Write Your Idea</h1>
-    <label class="post-form-label" for="author">Author:</label>
-    <input size="70" id="author" name="author" type="text" required tabindex="1">
+    <label class="post-form-label post-author-label" for="author">Author:</label><span class="post-author-prefill">{{user.username}}</span>
+    <!--<input size="70" id="author" name="author" type="text" required tabindex="1">-->
+    <p></p>
     <label class="post-form-label" for="title">Title:</label>
     <input size="70" id="title" name="title" value="{{post.title}}" type="text" required tabindex="2">
     <div id="preview"></div>

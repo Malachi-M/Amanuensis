@@ -31,7 +31,7 @@ exports.init = function() {
             });
         })
         .post(function(req, res) {
-            console.log(req.body);
+            //console.log(req.body);
             if (req.body.password !== req.body.passwordTwo) {
                 return res.render('register', {
                     title: "Amanuensis | New Account",
@@ -41,9 +41,28 @@ exports.init = function() {
                     },
                 });
             }
-            console.log('Joining: ' + req.body.username);
+            if (req.body.email === "" || req.body.email.length < 1) {
+                return res.render('register', {
+                    title: "Amanuensis | New Account",
+                    notification: {
+                        severity: "error",
+                        message: "A valid email is required"
+                    }
+                });
+            }
+            if (req.body.username === "" || req.body.username.length < 1) {
+                return res.render('register', {
+                    title: "Amanuensis | New Account",
+                    notification: {
+                        severity: "error",
+                        message: "Username is required"
+                    }
+                });
+            }
+            console.log('Joining: ' + req.body.username + "\n" + req.body.email);
             User.register(new User({
-                username: req.body.username
+                username: req.body.username,
+                user_email: req.body.email
             }), req.body.password, function(err, user) {
                 if (err) {
                     return res.render('register', {
@@ -91,7 +110,7 @@ exports.init = function() {
                         return next(err);
                     }
                     if (user) {
-                        return res.redirect('/posts/by/:author');
+                        return res.redirect('/posts/my/');
                     }
                     else {
                         return res.redirect('/login');

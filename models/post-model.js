@@ -27,7 +27,7 @@ var postSchema = new mongoose.Schema({ //Blog Post Schema defined.
     id: Number,
     permalink: String,
     title: String,
-    authorId: String,
+    user_id: String,
     author: String,
     created: {
         type: Date, 

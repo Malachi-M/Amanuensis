@@ -4,7 +4,7 @@
     {{#posts}}
     <article class="post-blog-entry">
         <h1 class="post-title">{{title}}</h1>
-        <h4 class="post-author">{{author}}</h4>
+        <h4 class="post-author"><a href="/posts/by/author/{{author}}" class="post-author-link">{{author}}</a></h4>
         <time class="post-time"><small>{{dateFormat}}</small></time>
         <main class="post-body">{{{bodyHTML}}}</main>
         <span>{{isRemoved}}</span>

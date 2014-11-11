@@ -105,7 +105,25 @@ nav,
 .post-container{
   transition: all 0.5s, ease 0s;
 }
+.search-wrapper{
+  border-top: 1px solid #FFF;
+}
+.post-search-container{
+  margin-left: 10px;
+  margin-top: 20px;
+}
+.search-input {
+  width: 130px;
+  height: 15px;
+}
+.hidden{
+  display: none;
+}
 /******* Post Styles *********/
+.post-author-link{
+  text-decoration: none;
+  color: #CECECE;
+}
 .post-tag {
   border: 1px solid #CECECE;
   border-radius: 3px;
@@ -157,6 +175,10 @@ input {
   display: block;
 }
 /******* Create Comment Styles *********/
+.edit-post-comments-container{
+  @extend $content-width;
+  max-width: 600px;
+}
 .comment-form {
   @extend $content-width;
 }
@@ -185,9 +207,18 @@ input {
 .post-form-label {
   @extend .form-label;
 }
+.post-author-label{
+  display: inline-block;
+  margin-top:0px;
+}
+.post-author-prefill{
+  font-size: 21px;
+  margin-left:7px;
+  font-weight: bold;
+}
 .post-form {
   @extend $content-width;
-  width: 600px;
+  max-width: 600px;
 }
 .post-form h1{
   margin: 15px 0px 40px;
@@ -239,6 +270,7 @@ input {
 }
 /********* Error Messages ************/
 .message {
+  margin-top:2em;
   text-align: center;
 }
 /********* Media Queries *************/

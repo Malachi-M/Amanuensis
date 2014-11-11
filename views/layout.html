@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/styles.css" type="text/css" />
-        <title>{{title}}</title>
-    </head>
-    <body>
-        <nav>
-            <h1><a href="/"><img class="brand-logo" src="/images/quill-logo2-white.png" alt="Image of Brand Logo"></a></h1>
-          <ul class="nav-list">
-            <li class="nav-item"><a href="/"><span class="nav-item-detail">View Posts</span></a></li>
-            <li class="nav-item"><a href="/login"><span class="nav-item-detail">Login</span></a></li>
-            <li class="nav-item"><a href="/join"><span class="nav-item-detail">Join Us</span></a></li>
-            {{#if user}}
-            <li class="nav-item"><a href="/posts/admin/create"><span class="nav-item-detail">Create Post</span></a></li>
-            {{#if post}}<li class="nav-item"><a href="/posts/admin/{{post._id}}/edit"><span class="nav-item-detail">Edit Post</span></a></li>{{/if}}
-            <li class="nav-item"><a href="/logout"><span class="nav-item-detail">Logout</span></a></li>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>{{title}}</title>
+</head>
+
+<body>
+    <nav>
+        <h1><a href="/"><img class="brand-logo" src="/images/quill-logo2-white.png" alt="Image of Brand Logo"></a></h1>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="/"><span class="nav-item-detail">View Posts</span></a>
+            </li>
+            {{#unless user}}
+            <li class="nav-item"><a href="/login"><span class="nav-item-detail">Login</span></a>
+            </li>
+            <li class="nav-item"><a href="/join"><span class="nav-item-detail">Join Us</span></a>
+            </li>
+            {{/unless}} {{#if user}}
+            <li class="nav-item"><a href="/posts/admin/create"><span class="nav-item-detail">Create Post</span></a>
+            </li>
+            {{#if post}}
+            <li class="nav-item"><a href="/posts/admin/{{post._id}}/edit"><span class="nav-item-detail">Edit Post</span></a>
+            </li>{{/if}}
+            <li class="nav-item"><a href="/logout"><span class="nav-item-detail">Logout</span></a>
+            </li>
             {{/if}}
-          </ul>    
-        </nav>
-        
-            {{{ body }}}
-            
-    </body>
+            <li class="search-wrapper"> <div class="post-search-container"><i class="fa fa-search"></i> {{> search }} </div>
+            </li>
+        </ul>
+    </nav>
+
+    {{{ body }}}
+
+<script src="/scripts/quickSearch.js"></script>
+</body>
+
 </html>

@@ -2,6 +2,13 @@ var mongoose = require('mongoose');
 var Post = require('./post-model');
 
 var User = mongoose.Schema({
+    user_email:{
+        type: String,
+        require: true,
+        index:{
+            unique: true
+        }
+    },
     username: {
         type: String,
         require: true,
@@ -33,17 +40,26 @@ User.methods.retrievePostById = function(id, cb){
 
 User.methods.newPost = function(){
     var post = new Post();
-    post.user_id - this._id;
+    post.user_id = this._id;
     return post;
 };  
 
-//Delets a post from the user's collection.
+//Deletes a post from the user's collection.
 
 User.methods.removePost = function(post, cb){
-    Post.fineOneAndRemove({
+    Post.findOneAndRemove({
         _id: post._id,
         user_id: this._id
     },cb);  
+};
+
+//Deletes a comment from a post in the user's collection
+//TODO complete the removal of comment
+User.methods.removeComment = function(post, comment_id, cb){ 
+    console.log(post + "\n" + comment_id);
+    Post.comment.findOneAndRemove({
+        _id: comment_id
+    }, cb);
 };
 
 module.exports = mongoose.model('user', User);

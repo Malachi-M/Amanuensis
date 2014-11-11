@@ -3,7 +3,7 @@
 <form class="post-form" action="" method="post">
     <h1>Edit Your Idea</h1>
     <label class="post-form-label" for="author">Author:</label>
-    <input size="70" id="author" name="author" type="text" value="{{post.author}}">
+    <input size="70" id="author" name="author" type="text" value="{{user.username}}">
     <label class="post-form-label" for="title">Title:</label>
     <input size="70" id="title" name="title" value="{{post.title}}" type="text">
     <div id="preview"></div>
@@ -12,15 +12,18 @@
     <label class="post-form-label" for="tags">Tags:</label>
     <input size="70" id="tags" name="tag" type="text" value="{{post.tag}}">
     <input value="Submit" class="post-form-submit" type="submit">
-    <button
-        type="submit"
-        class="post-remove-button" 
-        name="action"
-        formaction="/admin/post/{{post._id}}/delete"
-        formmethod="POST"
-        onclick="return confirm('Do you want to Remove this post?');"
-        value="Remove">Remove</button>  
+    <button type="submit" class="post-remove-button" name="action" formaction="/posts/admin/{{post._id}}/delete" formmethod="POST" onclick="return confirm('Do you want to Remove this post?');" value="Remove">Remove</button>
 </form>
+
+<aside class="edit-post-comments-container">
+    {{#each post.comment}}
+    <hr>
+    <a href="/posts/admin/{{../post._id}}/comment/{{this._id}}/delete" class="post-comment-delete">X</a>
+    <h5 class="post-comment-author">{{author}}</h6>
+            <time class="post-comment-time"><small>{{commentDateFormat}}</small></time>
+            <p class="post-comment-body">{{body}}</p>
+        {{/each}}    
+    </aside>
 <script src="/scripts/vendor/markdown/markdown.min.js"></script>
 <script src="/scripts/clientCompileMarkdown.js"></script>
 

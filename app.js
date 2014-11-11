@@ -21,6 +21,11 @@ app.set('view engine', 'html'); // Setting the views for the templates to be rea
 app.engine('html', hbs.__express);
 
 hbsutils.registerPartials('views/partials');
+hbs.registerHelper('eq', function(leftValue,rightValue, options){
+    if (leftValue === rightValue){
+        return options.fn(this);
+    }
+});
 
 app.use(stylus.middleware(__dirname + '/public/css'));
 

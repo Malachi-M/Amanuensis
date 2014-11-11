@@ -4,13 +4,13 @@
     {{#post}}
     <article class="post-blog-entry">
         <h1 class="post-title">{{title}}</h1>
-        <h4 class="post-author">{{author}}</h4>
+        <h4 class="post-author"><a href="/posts/by/author/{{author}}" class="post-author-link">{{author}}</a></h4>
         <time class="post-time"><small>{{dateFormat}}</small></time>
         <main class="post-body">{{{bodyHTML}}}</main>
         {{#if tag.length}} 
             <ul class="post-tag-list">
                 {{#each tag}}
-                    <a href="" class="post-tag-anchor"><li class="post-tag">{{this}}</li></a>
+                    <a href="/posts/by/tag/{{this}}" class="post-tag-anchor"><li class="post-tag">{{this}}</li></a>
                 {{/each}}
             </ul>
         {{/if}}
@@ -18,9 +18,6 @@
     <aside class="post-comments-container">
         {{#each comment}}
             <hr>
-            {{!--{{#if post.user._id === user._id}}
-                <a href="/posts/admin/:post_id/comment/:comment_id/delete" class="post-comment-delete">X</a>
-            {{/if}}--}}
             <h5 class="post-comment-author">{{author}}</h6>
             <time class="post-comment-time"><small>{{commentDateFormat}}</small></time>
             <p class="post-comment-body">{{body}}</p>
